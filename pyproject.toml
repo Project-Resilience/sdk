@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prsdk"
+version = "0.0.1"
+authors = [
+    {name = "Daniel Young", email = "daniel.young2@cognizant.com"},
+    {name = "Olivier Francon", email = "olivier.francon@cognizant.com"},
+]
+description = "Project Resilience's software development kit"
+readme = "README.md"
+requires-python = ">=3.10.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/Project-Resilience/sdk"
+Issues = "https://github.com/Project-Resilience/sdk/issues"
