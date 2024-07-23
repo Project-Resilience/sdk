@@ -9,10 +9,10 @@
 
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
-ignore=.git
+ignore=
 
 # Directories from top level that should be ignored.
-ignore-paths=backend/grpc/generated,serving/adapter/grpc_gen/generated
+ignore-paths=
 
 # Add files or directories matching the regex patterns to the blacklist. The
 # regex matches against base names, not paths.
@@ -40,8 +40,6 @@ suggestion-mode=yes
 # --disable=W"
 
 disable=
-    duplicate-code,
-    missing-module-docstring,
 
 # Default set of "always good" names
 good-names=_
