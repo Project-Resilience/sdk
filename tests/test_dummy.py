@@ -5,6 +5,7 @@ import unittest
 
 from src.prsdk.dummy import compute_percent_change
 
+
 class TestDummy(unittest.TestCase):
     """
     Tests for the dummy module.
