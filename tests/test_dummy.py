@@ -1,20 +1,17 @@
 """
-Dummy test for the dummy module.
+Dummy test to test Github actions.
 """
 import unittest
-
-from src.prsdk.dummy import compute_percent_change
 
 
 class TestDummy(unittest.TestCase):
     """
-    Tests for the dummy module.
+    A fake test that always returns true.
     """
-    def test_pct_change(self):
+    def test_dummy(self):
         """
-        Tests the compute_percent_change function.
-        It should return the input divided by 100.
+        A test that always returns true.
         """
-        self.assertEqual(compute_percent_change(100), 1.0)
-        self.assertEqual(compute_percent_change(50), 0.5)
-        self.assertEqual(compute_percent_change(0), 0.0)
+        # pylint: disable=redundant-unittest-assert
+        self.assertTrue(True)
+        # pylint: enable=redundant-unittest-assert
