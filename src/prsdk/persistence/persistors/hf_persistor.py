@@ -64,7 +64,6 @@ class HuggingFacePersistor(Persistor):
 
         url_path = path_or_url.replace("/", "--")
         local_dir = hf_args.get("local_dir", f"~/.cache/huggingface/project-resilience/{url_path}")
-
         if not Path(local_dir).exists() or not Path(local_dir).is_dir():
             hf_args["local_dir"] = local_dir
             snapshot_download(repo_id=path_or_url, **hf_args)
