@@ -42,6 +42,6 @@ suggestion-mode=yes
 disable=
 
 # Default set of "always good" names
-good-names=_,X_train,X_test
+good-names=_,X_train,X_test,X,X_val,X_train_scaled,X_test_scaled,X_val_scaled
 
 recursive=y
