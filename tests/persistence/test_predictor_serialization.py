@@ -7,7 +7,6 @@ from pathlib import Path
 
 import pandas as pd
 
-from data.cao_mapping import CAOMapping
 from persistence.serializers.neural_network_serializer import NeuralNetSerializer
 from persistence.serializers.sklearn_serializer import SKLearnSerializer
 from predictors.neural_network.neural_net_predictor import NeuralNetPredictor
@@ -25,7 +24,6 @@ class TestPredictorSerialization(unittest.TestCase):
         2 models with the same parameters, load one from the other's save, and check if
         their predictions are the same.
         """
-        self.cao = CAOMapping(["a", "b"], ["c"], ["label"])
         self.models = [
             NeuralNetPredictor,
             LinearRegressionPredictor,
@@ -56,7 +54,7 @@ class TestPredictorSerialization(unittest.TestCase):
         ]
         for model, serializer, config, test_names in zip(self.models, self.serializers, self.configs, save_file_names):
             with self.subTest(model=model):
-                predictor = model(self.cao, config)
+                predictor = model(config)
                 predictor.fit(self.dummy_data, self.dummy_target)
                 serializer.save(predictor, self.temp_path)
                 files = [f.name for f in self.temp_path.glob("**/*") if f.is_file()]
@@ -71,7 +69,7 @@ class TestPredictorSerialization(unittest.TestCase):
         """
         for model, serializer, config in zip(self.models, self.serializers, self.configs):
             with self.subTest(model=model):
-                predictor = model(self.cao, config)
+                predictor = model(config)
                 predictor.fit(self.dummy_data.iloc[:2], self.dummy_target.iloc[:2])
                 output = predictor.predict(self.dummy_data.iloc[2:])
                 serializer.save(predictor, self.temp_path)

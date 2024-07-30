@@ -7,7 +7,6 @@ from pathlib import Path
 import joblib
 import torch
 
-from data.cao_mapping import CAOMapping
 from persistence.serializers.serializer import Serializer
 from predictors.neural_network.torch_neural_net import TorchNeuralNet
 from predictors.neural_network.neural_net_predictor import NeuralNetPredictor
@@ -31,9 +30,6 @@ class NeuralNetSerializer(Serializer):
 
         # Note: we don't save the model's device, as it's not guaranteed to be available on load
         config = {
-            "context": model.cao.context,
-            "actions": model.cao.actions,
-            "outcomes": model.cao.outcomes,
             "features": model.features,
             "label": model.label,
             "hidden_sizes": model.hidden_sizes,
@@ -68,9 +64,7 @@ class NeuralNetSerializer(Serializer):
         # Initialize model with config
         with open(path / "config.json", "r", encoding="utf-8") as file:
             config = json.load(file)
-        # Grab CAO out of config
-        cao = CAOMapping(config.pop("context"), config.pop("actions"), config.pop("outcomes"))
-        nnp = NeuralNetPredictor(cao, config)
+        nnp = NeuralNetPredictor(config)
 
         nnp.model = TorchNeuralNet(len(config["features"]),
                                    config["hidden_sizes"],

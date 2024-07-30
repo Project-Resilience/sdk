@@ -14,7 +14,6 @@ import torch
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
-from data.cao_mapping import CAOMapping
 from data.torch_data import TorchDataset
 from predictors.predictor import Predictor
 from predictors.neural_network.torch_neural_net import TorchNeuralNet
@@ -29,11 +28,8 @@ class NeuralNetPredictor(Predictor):
     Data is automatically standardized and the scaler is saved with the model.
     TODO: We want to be able to have custom scaling in the future.
     """
-    def __init__(self, cao: CAOMapping, model_config: dict):
+    def __init__(self, model_config: dict):
         """
-        :param context: list of context features.
-        :param actions: list of action features.
-        :param outcomes: list of outcomes to predict.
         :param model_config: dictionary of model configuration parameters.
             Model config should contain the following:
             features: list of features to use in the model (optional, defaults to all context + actions)
@@ -48,7 +44,7 @@ class NeuralNetPredictor(Predictor):
             train_pct: percentage of training data to use (defaults to 1)
             step_lr_params: dictionary of parameters to pass to the step learning rate scheduler (defaults to 1, 0.1)
         """
-        super().__init__(cao)
+        super().__init__()
         self.features = model_config.get("features", None)
         self.label = model_config.get("label", None)
 

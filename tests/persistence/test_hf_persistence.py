@@ -17,7 +17,6 @@ class TestHuggingFacePersistence(unittest.TestCase):
     """
     Tests the HuggingFace Persistor. We can't test the actual upload but we can test the download with an
     arbitrary model from HuggingFace.
-    TODO: We have to update our models to match the new configs that save CAO
     """
     def setUp(self):
         self.temp_dir = Path("tests/temp")

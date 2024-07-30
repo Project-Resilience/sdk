@@ -6,7 +6,6 @@ from pathlib import Path
 
 import joblib
 
-from data.cao_mapping import CAOMapping
 from persistence.serializers.serializer import Serializer
 from predictors.sklearn_predictors.sklearn_predictor import SKLearnPredictor
 
@@ -24,13 +23,8 @@ class SKLearnSerializer(Serializer):
         """
         path.mkdir(parents=True, exist_ok=True)
 
-        # Add CAO to the config
-        config = dict(model.config.items())
-        cao_dict = {"context": model.cao.context, "actions": model.cao.actions, "outcomes": model.cao.outcomes}
-        config.update(cao_dict)
-
         with open(path / "config.json", "w", encoding="utf-8") as file:
-            json.dump(config, file)
+            json.dump(model.config, file)
         joblib.dump(model.model, path / "model.joblib")
 
     def load(self, path: Path) -> "SKLearnPredictor":
@@ -44,11 +38,9 @@ class SKLearnSerializer(Serializer):
         if not (load_path / "config.json").exists() or not (load_path / "model.joblib").exists():
             raise FileNotFoundError("Model files not found in path.")
 
-        # Extract CAO from config
         with open(load_path / "config.json", "r", encoding="utf-8") as file:
             config = json.load(file)
-        cao = CAOMapping(config.pop("context"), config.pop("actions"), config.pop("outcomes"))
 
         model = joblib.load(load_path / "model.joblib")
-        sklearn_predictor = SKLearnPredictor(cao, model, config)
+        sklearn_predictor = SKLearnPredictor(model, config)
         return sklearn_predictor

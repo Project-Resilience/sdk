@@ -6,7 +6,6 @@ from abc import ABC
 
 import pandas as pd
 
-from data.cao_mapping import CAOMapping
 from predictors.predictor import Predictor
 
 
@@ -15,14 +14,14 @@ class SKLearnPredictor(Predictor, ABC):
     Simple abstract class for sklearn predictors.
     Keeps track of features fit on and label to predict.
     """
-    def __init__(self, cao: CAOMapping, model, model_config: dict):
+    def __init__(self, model, model_config: dict):
         """
         Model config contains the following:
         features: list of features to use for prediction (optional, defaults to all features)
         label: name of the label to predict (optional, defaults to passed label during fit)
         Any other parameters are passed to the model.
         """
-        super().__init__(cao)
+        super().__init__()
         self.config = model_config
         self.model = model
 
