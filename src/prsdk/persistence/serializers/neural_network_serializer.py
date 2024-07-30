@@ -47,12 +47,15 @@ class NeuralNetSerializer(Serializer):
         }
         with open(path / "config.json", "w", encoding="utf-8") as file:
             json.dump(config, file)
+        # Put model on CPU before saving
+        model.model.to("cpu")
         torch.save(model.model.state_dict(), path / "model.pt")
         joblib.dump(model.scaler, path / "scaler.joblib")
 
     def load(self, path: Path) -> NeuralNetPredictor:
         """
         Loads a model from a given folder. Creates empty model with config, then loads model state dict and scaler.
+        NOTE: We don't put the model back on the device it was trained on. This has to be done manually.
         :param path: path to folder containing model files.
         """
         if not path.exists() or not path.is_dir():
@@ -74,7 +77,6 @@ class NeuralNetSerializer(Serializer):
                                    config["linear_skip"],
                                    config["dropout"])
         nnp.model.load_state_dict(torch.load(path / "model.pt"))
-        nnp.model.to(config["device"])
         nnp.model.eval()
         nnp.scaler = joblib.load(path / "scaler.joblib")
         return nnp
