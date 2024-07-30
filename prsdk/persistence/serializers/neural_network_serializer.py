@@ -7,9 +7,9 @@ from pathlib import Path
 import joblib
 import torch
 
-from persistence.serializers.serializer import Serializer
-from predictors.neural_network.torch_neural_net import TorchNeuralNet
-from predictors.neural_network.neural_net_predictor import NeuralNetPredictor
+from prsdk.persistence.serializers.serializer import Serializer
+from prsdk.predictors.neural_network.torch_neural_net import TorchNeuralNet
+from prsdk.predictors.neural_network.neural_net_predictor import NeuralNetPredictor
 
 
 class NeuralNetSerializer(Serializer):

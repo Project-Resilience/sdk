@@ -6,7 +6,7 @@ from pathlib import Path
 
 from abc import ABC, abstractmethod
 
-from persistence.serializers.serializer import Serializer
+from prsdk.persistence.serializers.serializer import Serializer
 
 
 class Persistor(ABC):

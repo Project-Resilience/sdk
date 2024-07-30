@@ -14,9 +14,9 @@ import torch
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
-from data.torch_data import TorchDataset
-from predictors.predictor import Predictor
-from predictors.neural_network.torch_neural_net import TorchNeuralNet
+from prsdk.data.torch_data import TorchDataset
+from prsdk.predictors.predictor import Predictor
+from prsdk.predictors.neural_network.torch_neural_net import TorchNeuralNet
 
 
 # pylint: disable=too-many-instance-attributes

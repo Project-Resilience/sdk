@@ -8,9 +8,9 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from persistence.persistors.hf_persistor import HuggingFacePersistor
-from persistence.serializers.neural_network_serializer import NeuralNetSerializer
-from predictors.neural_network.neural_net_predictor import NeuralNetPredictor
+from prsdk.persistence.persistors.hf_persistor import HuggingFacePersistor
+from prsdk.persistence.serializers.neural_network_serializer import NeuralNetSerializer
+from prsdk.predictors.neural_network.neural_net_predictor import NeuralNetPredictor
 
 
 class TestHuggingFacePersistence(unittest.TestCase):

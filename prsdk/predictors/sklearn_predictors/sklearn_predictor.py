@@ -6,7 +6,7 @@ from abc import ABC
 
 import pandas as pd
 
-from predictors.predictor import Predictor
+from prsdk.predictors.predictor import Predictor
 
 
 class SKLearnPredictor(Predictor, ABC):

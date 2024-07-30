@@ -5,7 +5,7 @@ import unittest
 
 import pandas as pd
 
-from predictors.neural_network.neural_net_predictor import NeuralNetPredictor
+from prsdk.predictors.neural_network.neural_net_predictor import NeuralNetPredictor
 
 
 class TestNeuralNet(unittest.TestCase):

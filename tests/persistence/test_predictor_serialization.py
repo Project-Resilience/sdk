@@ -7,11 +7,11 @@ from pathlib import Path
 
 import pandas as pd
 
-from persistence.serializers.neural_network_serializer import NeuralNetSerializer
-from persistence.serializers.sklearn_serializer import SKLearnSerializer
-from predictors.neural_network.neural_net_predictor import NeuralNetPredictor
-from predictors.sklearn_predictors.linear_regression_predictor import LinearRegressionPredictor
-from predictors.sklearn_predictors.random_forest_predictor import RandomForestPredictor
+from prsdk.persistence.serializers.neural_network_serializer import NeuralNetSerializer
+from prsdk.persistence.serializers.sklearn_serializer import SKLearnSerializer
+from prsdk.predictors.neural_network.neural_net_predictor import NeuralNetPredictor
+from prsdk.predictors.sklearn_predictors.linear_regression_predictor import LinearRegressionPredictor
+from prsdk.predictors.sklearn_predictors.random_forest_predictor import RandomForestPredictor
 
 
 class TestPredictorSerialization(unittest.TestCase):
