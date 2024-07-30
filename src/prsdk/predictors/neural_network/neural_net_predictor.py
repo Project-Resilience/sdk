@@ -199,7 +199,7 @@ class NeuralNetPredictor(Predictor):
         with torch.no_grad():
             self.model.eval()
             for X, _ in test_dl:
-                X = X.to(self.model.device)
+                X = X.to(self.device)
                 pred_list.append(self.model(X))
 
         # Flatten into a single numpy array if we have multiple batches
@@ -208,3 +208,12 @@ class NeuralNetPredictor(Predictor):
         else:
             y_pred = pred_list[0].cpu().numpy()
         return pd.DataFrame(y_pred, index=context_actions_df.index, columns=[self.label])
+    
+    def set_device(self, device: str):
+        """
+        Sets the device to run the model on.
+        """
+        self.device = device
+        if self.model:
+            self.model.to(device)
+

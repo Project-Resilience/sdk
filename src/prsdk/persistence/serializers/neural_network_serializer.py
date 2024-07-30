@@ -29,6 +29,7 @@ class NeuralNetSerializer(Serializer):
             raise ValueError("Model not fitted yet.")
         path.mkdir(parents=True, exist_ok=True)
 
+        # Note: we don't save the model's device, as it's not guaranteed to be available on load
         config = {
             "context": model.cao.context,
             "actions": model.cao.actions,
@@ -38,7 +39,6 @@ class NeuralNetSerializer(Serializer):
             "hidden_sizes": model.hidden_sizes,
             "linear_skip": model.linear_skip,
             "dropout": model.dropout,
-            "device": model.device,
             "epochs": model.epochs,
             "batch_size": model.batch_size,
             "optim_params": model.optim_params,
