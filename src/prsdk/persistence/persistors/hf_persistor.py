@@ -61,7 +61,7 @@ class HuggingFacePersistor(Persistor):
         path = Path(path_or_url)
         if path.exists() and path.is_dir():
             return self.serializer.load(path)
-        # TODO: Need a try except block to catch download errors
+
         url_path = path_or_url.replace("/", "--")
         local_dir = hf_args.get("local_dir", f"~/.cache/huggingface/project-resilience/{url_path}")
 

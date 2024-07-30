@@ -6,6 +6,7 @@ from abc import ABC, abstractmethod
 import pandas as pd
 
 
+# pylint: disable=too-few-public-methods
 class Prescriptor(ABC):
     """
     Abstract class for prescriptors to allow us to experiment with different implementations.
@@ -24,3 +25,4 @@ class Prescriptor(ABC):
         :return: A dataframe containing the context and the prescribed actions.
         """
         raise NotImplementedError
+# pylint: enable=too-few-public-methods
