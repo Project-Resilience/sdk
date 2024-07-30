@@ -5,6 +5,8 @@ from abc import ABC, abstractmethod
 
 import pandas as pd
 
+from data.cao_mapping import CAOMapping
+
 
 class Predictor(ABC):
     """
@@ -12,16 +14,12 @@ class Predictor(ABC):
     Predictors must be able to be fit and predict on a DataFrame.
     It is up to the Predictor to keep track of the proper label to label the output DataFrame.
     """
-    def __init__(self, context: list[str], actions: list[str], outcomes: list[str]):
+    def __init__(self, cao: CAOMapping):
         """
         Initializes the Predictor with the context, actions, and outcomes.
-        :param context: list of context columns
-        :param actions: list of action columns
-        :param outcomes: list of outcome columns
+        :param cao: CAOMapping object with context, actions, and outcomes.
         """
-        self.context = context
-        self.actions = actions
-        self.outcomes = outcomes
+        self.cao = cao
 
     @abstractmethod
     def fit(self, X_train: pd.DataFrame, y_train: pd.Series):

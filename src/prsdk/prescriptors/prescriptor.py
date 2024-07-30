@@ -5,16 +5,21 @@ from abc import ABC, abstractmethod
 
 import pandas as pd
 
+from data.cao_mapping import CAOMapping
+
 
 # pylint: disable=too-few-public-methods
 class Prescriptor(ABC):
     """
     Abstract class for prescriptors to allow us to experiment with different implementations.
     """
-    def __init__(self, context: list[str], actions: list[str]):
-        # We keep track of the context and actions to ensure that the prescriptor is compatible with the environment.
-        self.context = context
-        self.actions = actions
+    def __init__(self, cao: CAOMapping):
+        """
+        We keep track of the context, actions, and outcomes in the CAO mapping to ensure the prescriptor is compatible
+        with the project it's in.
+        :param cao: CAOMapping object with context, actions, and outcomes.
+        """
+        self.cao = cao
 
     @abstractmethod
     def prescribe(self, context_df: pd.DataFrame) -> pd.DataFrame:
