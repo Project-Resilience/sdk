@@ -76,7 +76,8 @@ class NeuralNetSerializer(Serializer):
                                    config["hidden_sizes"],
                                    config["linear_skip"],
                                    config["dropout"])
-        nnp.model.load_state_dict(torch.load(path / "model.pt"))
+        # Set map_location to CPU to avoid issues with GPU availability
+        nnp.model.load_state_dict(torch.load(path / "model.pt", map_location="cpu"))
         nnp.model.eval()
         nnp.scaler = joblib.load(path / "scaler.joblib")
         return nnp
