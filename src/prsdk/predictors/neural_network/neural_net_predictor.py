@@ -208,7 +208,7 @@ class NeuralNetPredictor(Predictor):
         else:
             y_pred = pred_list[0].cpu().numpy()
         return pd.DataFrame(y_pred, index=context_actions_df.index, columns=[self.label])
-    
+
     def set_device(self, device: str):
         """
         Sets the device to run the model on.
@@ -216,4 +216,3 @@ class NeuralNetPredictor(Predictor):
         self.device = device
         if self.model:
             self.model.to(device)
-
