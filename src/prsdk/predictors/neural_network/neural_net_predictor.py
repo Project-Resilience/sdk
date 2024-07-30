@@ -199,7 +199,7 @@ class NeuralNetPredictor(Predictor):
         with torch.no_grad():
             self.model.eval()
             for X, _ in test_dl:
-                X = X.to(self.device)
+                X = X.to(self.model.device)
                 pred_list.append(self.model(X))
 
         # Flatten into a single numpy array if we have multiple batches
