@@ -1,26 +1,17 @@
 """
-Abstract class for predictors to inherit from.
+Interface for predictors to implement.
 """
 from abc import ABC, abstractmethod
 
 import pandas as pd
 
-from data.cao_mapping import CAOMapping
-
 
 class Predictor(ABC):
     """
-    Abstract class for predictors to inherit from.
+    Interface for predictors to implement.
     Predictors must be able to be fit and predict on a DataFrame.
     It is up to the Predictor to keep track of the proper label to label the output DataFrame.
     """
-    def __init__(self, cao: CAOMapping):
-        """
-        Initializes the Predictor with the context, actions, and outcomes.
-        :param cao: CAOMapping object with context, actions, and outcomes.
-        """
-        self.cao = cao
-
     @abstractmethod
     def fit(self, X_train: pd.DataFrame, y_train: pd.Series):
         """
