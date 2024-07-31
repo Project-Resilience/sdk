@@ -189,7 +189,7 @@ class NeuralNetPredictor(Predictor):
         :return: DataFrame of predictions properly labeled and indexed.
         """
         X_test_scaled = self.scaler.transform(context_actions_df[self.features])
-        test_ds = TorchDataset(X_test_scaled, np.zeros(len(X_test_scaled)))
+        test_ds = TorchDataset(X_test_scaled, np.zeros(len(X_test_scaled)), device=self.device)
         test_dl = DataLoader(test_ds, self.batch_size, shuffle=False)
         pred_list = []
         with torch.no_grad():
