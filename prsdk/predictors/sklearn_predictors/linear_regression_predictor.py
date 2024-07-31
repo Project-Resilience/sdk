@@ -3,7 +3,7 @@ Implementation of SKLearnPredictor as a LinearRegressor.
 """
 from sklearn.linear_model import LinearRegression
 
-from predictors.sklearn_predictors.sklearn_predictor import SKLearnPredictor
+from prsdk.predictors.sklearn_predictors.sklearn_predictor import SKLearnPredictor
 
 
 class LinearRegressionPredictor(SKLearnPredictor):

@@ -3,7 +3,7 @@ Implementation of SKLearnPredictor as a RandomForestRegressor.
 """
 from sklearn.ensemble import RandomForestRegressor
 
-from predictors.sklearn_predictors.sklearn_predictor import SKLearnPredictor
+from prsdk.predictors.sklearn_predictors.sklearn_predictor import SKLearnPredictor
 
 
 class RandomForestPredictor(SKLearnPredictor):

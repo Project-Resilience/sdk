@@ -5,7 +5,7 @@ from pathlib import Path
 
 from huggingface_hub import HfApi, snapshot_download
 
-from persistence.persistors.persistor import Persistor
+from prsdk.persistence.persistors.persistor import Persistor
 
 
 class HuggingFacePersistor(Persistor):

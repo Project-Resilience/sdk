@@ -14,9 +14,9 @@ import torch
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
-from data.torch_data import TorchDataset
-from predictors.predictor import Predictor
-from predictors.neural_network.torch_neural_net import TorchNeuralNet
+from prsdk.data.torch_data import TorchDataset
+from prsdk.predictors.predictor import Predictor
+from prsdk.predictors.neural_network.torch_neural_net import TorchNeuralNet
 
 
 # pylint: disable=too-many-instance-attributes
@@ -189,7 +189,7 @@ class NeuralNetPredictor(Predictor):
         :return: DataFrame of predictions properly labeled and indexed.
         """
         X_test_scaled = self.scaler.transform(context_actions_df[self.features])
-        test_ds = TorchDataset(X_test_scaled, np.zeros(len(X_test_scaled)))
+        test_ds = TorchDataset(X_test_scaled, np.zeros(len(X_test_scaled)), device=self.device)
         test_dl = DataLoader(test_ds, self.batch_size, shuffle=False)
         pred_list = []
         with torch.no_grad():
