@@ -61,6 +61,12 @@ class NeuralNetPredictor(Predictor):
         self.model = None
         self.scaler = StandardScaler()
 
+    def forward(self, X: torch.Tensor) -> torch.Tensor:
+        """
+        Forward pass of the model.
+        """
+        return self.model(X)
+
     # pylint: disable=too-many-arguments,too-many-locals,too-many-branches,too-many-statements
     def fit(self, X_train: pd.DataFrame, y_train: pd.Series,
             X_val=None, y_val=None,
